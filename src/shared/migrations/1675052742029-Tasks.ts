@@ -24,10 +24,6 @@ export class Tasks1675052742029 implements MigrationInterface {
                         default: false
                     },
                     {
-                        name: 'user_id',
-                        type: 'uuid'
-                    },
-                    {
                         name: 'description',
                         type: 'varchar'
                     },
@@ -51,16 +47,6 @@ export class Tasks1675052742029 implements MigrationInterface {
                         isNullable: true
                     },
                 ],
-                foreignKeys:[
-                    {
-                        name: 'User',
-                        referencedTableName: 'users',
-                        referencedColumnNames: ['id'],
-                        columnNames: ['user_id'],
-                        onDelete: 'CASCADE',
-                        onUpdate: 'CASCADE'
-                    }
-                ]
             })
         )
     }

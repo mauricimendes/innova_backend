@@ -4,11 +4,8 @@ import {
     Column,
     CreateDateColumn,
     UpdateDateColumn,
-    DeleteDateColumn,
-    OneToMany,
+    DeleteDateColumn
 } from 'typeorm'
-
-import User from 'src/users/entities/user.entity'
 
 @Entity('tasks')
 export default class Task {
@@ -29,12 +26,6 @@ export default class Task {
 
     @Column()
     difficulty: string
-    
-    @Column()
-    user_id: string
-   
-    @OneToMany(() => User, user => user.id)
-    user: User
 
     @CreateDateColumn()
     created_at: Date
