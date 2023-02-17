@@ -36,14 +36,15 @@ export class TasksService {
     finalDate = addMinutes(finalDate, 59)
     finalDate = addSeconds(finalDate, 59)
 
-    console.log(difficulty === null ? 'teste' : 'tem coisa')
+    var where = {
+      date: Between(initialDate, finalDate),
+    }
+
+    where = difficulty === 'all' ? where : Object.assign(where, { difficulty })
 
     return await this.tasksRepository.find({
-      where: {
-        difficulty,
-        date: Between(initialDate, finalDate)
-      },
-      order: { created_at: 'ASC' }
+      where,
+      order: { created_at: 'ASC' },
     })
   }
 

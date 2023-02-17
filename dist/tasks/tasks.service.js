@@ -40,13 +40,13 @@ let TasksService = class TasksService {
         let finalDate = (0, date_fns_1.addHours)(initialDate, 23);
         finalDate = (0, date_fns_1.addMinutes)(finalDate, 59);
         finalDate = (0, date_fns_1.addSeconds)(finalDate, 59);
-        console.log(difficulty === null ? 'teste' : 'tem coisa');
+        var where = {
+            date: (0, typeorm_2.Between)(initialDate, finalDate),
+        };
+        where = difficulty === 'all' ? where : Object.assign(where, { difficulty });
         return await this.tasksRepository.find({
-            where: {
-                difficulty,
-                date: (0, typeorm_2.Between)(initialDate, finalDate)
-            },
-            order: { created_at: 'ASC' }
+            where,
+            order: { created_at: 'ASC' },
         });
     }
     async checked(id) {
